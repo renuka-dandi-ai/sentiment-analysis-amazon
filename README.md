@@ -12,7 +12,7 @@ Key Results:
 
  Quick Start
 bash# Clone repository
-git clone https://github.com/yourusername/sentiment-analysis.git
+git clone https://github.com/renuka-dandi-ai/sentiment-analysis.git
 cd sentiment-analysis
 
 # Install dependencies
