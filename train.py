@@ -32,7 +32,7 @@ np.random.seed(42)
 print("="*80)
 print("SENTIMENT ANALYSIS - MACHINE LEARNING PROJECT")
 print("="*80)
-print("\n📊 Using TF-IDF features (no Word2Vec needed - same accuracy!)\n")
+print("\n Using TF-IDF features (no Word2Vec needed - same accuracy!)\n")
 
 
 # ============================================================================
@@ -43,7 +43,7 @@ print("STEP 1: DATA LOADING AND EXPLORATION")
 print("="*80)
 
 df = pd.read_csv('data/amazon.csv', encoding='utf-8-sig')
-print(f"\n✅ Dataset loaded successfully!")
+print(f"\n Dataset loaded successfully!")
 print(f"Shape: {df.shape}")
 
 df.columns = ['review_text', 'sentiment']
@@ -73,7 +73,7 @@ visualizer.plot_review_length_distribution(df, text_col='review_text',
                                           save_path='outputs/review_length_dist.png')
 
 # Word clouds
-print("\n📊 Generating visualizations...")
+print("\n Generating visualizations...")
 for sentiment_class in df['sentiment'].unique():
     name = 'Positive' if sentiment_class == 1 else 'Negative'
     text_data = df[df['sentiment'] == sentiment_class]['review_text']
@@ -98,7 +98,7 @@ print("\n🔄 Preprocessing reviews...")
 df['cleaned_text'] = df['review_text'].apply(preprocessor.preprocess)
 df = df[df['cleaned_text'].str.len() > 0]
 
-print(f"✅ Preprocessing complete! Shape: {df.shape}")
+print(f" Preprocessing complete! Shape: {df.shape}")
 print("\nExample:")
 print(f"Original: {df.iloc[0]['review_text'][:100]}...")
 print(f"Cleaned:  {df.iloc[0]['cleaned_text'][:100]}...")
@@ -120,8 +120,8 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
 )
 
-print(f"\n✅ Training set: {len(X_train)}")
-print(f"✅ Testing set:  {len(X_test)}")
+print(f"\n Training set: {len(X_train)}")
+print(f" Testing set:  {len(X_test)}")
 
 
 # ============================================================================
@@ -131,7 +131,7 @@ print("\n" + "="*80)
 print("STEP 5: FEATURE ENGINEERING (TF-IDF)")
 print("="*80)
 
-print("\n📊 Creating TF-IDF features (uni-grams + bi-grams + tri-grams)...")
+print("\n Creating TF-IDF features (uni-grams + bi-grams + tri-grams)...")
 
 tfidf_vectorizer = TfidfVectorizer(
     max_features=5000,
@@ -144,12 +144,12 @@ tfidf_vectorizer = TfidfVectorizer(
 X_train_tfidf = tfidf_vectorizer.fit_transform(X_train)
 X_test_tfidf = tfidf_vectorizer.transform(X_test)
 
-print(f"✅ TF-IDF Training shape: {X_train_tfidf.shape}")
-print(f"✅ TF-IDF Testing shape:  {X_test_tfidf.shape}")
-print(f"✅ Vocabulary size: {len(tfidf_vectorizer.vocabulary_)}")
+print(f" TF-IDF Training shape: {X_train_tfidf.shape}")
+print(f" TF-IDF Testing shape:  {X_test_tfidf.shape}")
+print(f" Vocabulary size: {len(tfidf_vectorizer.vocabulary_)}")
 
 joblib.dump(tfidf_vectorizer, 'models/tfidf_vectorizer.pkl')
-print("✅ TF-IDF vectorizer saved!")
+print(" TF-IDF vectorizer saved!")
 
 
 # ============================================================================
@@ -183,7 +183,7 @@ evaluator = ModelEvaluator()
 # -----------------------------
 # 7.1: Naive Bayes
 # -----------------------------
-print("\n7.1: 🤖 Training Naive Bayes")
+print("\n7.1:  Training Naive Bayes")
 print("-" * 60)
 
 nb_model = MultinomialNB(alpha=0.1)  # Tuned parameter
@@ -205,7 +205,7 @@ save_model(nb_model, 'models/naive_bayes.pkl')
 # -----------------------------
 # 7.2: Logistic Regression
 # -----------------------------
-print("\n7.2: 🤖 Training Logistic Regression (with tuning)")
+print("\n7.2:  Training Logistic Regression (with tuning)")
 print("-" * 60)
 
 param_grid_lr = {
@@ -219,8 +219,8 @@ grid_lr = GridSearchCV(lr_model, param_grid_lr, cv=3, scoring='f1',
                        n_jobs=-1, verbose=0)
 grid_lr.fit(X_train_balanced, y_train_balanced)
 
-print(f"✅ Best params: {grid_lr.best_params_}")
-print(f"✅ Best CV F1: {grid_lr.best_score_:.4f}")
+print(f" Best params: {grid_lr.best_params_}")
+print(f" Best CV F1: {grid_lr.best_score_:.4f}")
 
 lr_best = grid_lr.best_estimator_
 lr_pred = lr_best.predict(X_test_tfidf)
@@ -241,7 +241,7 @@ save_model(lr_best, 'models/logistic_regression.pkl')
 # -----------------------------
 # 7.3: SVM
 # -----------------------------
-print("\n7.3: 🤖 Training Support Vector Machine")
+print("\n7.3:  Training Support Vector Machine")
 print("-" * 60)
 
 svm_model = SVC(kernel='linear', C=1, probability=True, random_state=42)
@@ -262,7 +262,7 @@ save_model(svm_model, 'models/svm.pkl')
 # -----------------------------
 # 7.4: Random Forest
 # -----------------------------
-print("\n7.4: 🤖 Training Random Forest (with tuning)")
+print("\n7.4:  Training Random Forest (with tuning)")
 print("-" * 60)
 
 param_grid_rf = {
@@ -276,8 +276,8 @@ grid_rf = GridSearchCV(rf_model, param_grid_rf, cv=3, scoring='f1',
                        n_jobs=-1, verbose=0)
 grid_rf.fit(X_train_balanced, y_train_balanced)
 
-print(f"✅ Best params: {grid_rf.best_params_}")
-print(f"✅ Best CV F1: {grid_rf.best_score_:.4f}")
+print(f" Best params: {grid_rf.best_params_}")
+print(f" Best CV F1: {grid_rf.best_score_:.4f}")
 
 rf_best = grid_rf.best_estimator_
 rf_pred = rf_best.predict(X_test_tfidf)
@@ -310,7 +310,7 @@ best_idx = results_df['F1-Score'].idxmax()
 best_model = results_df.iloc[best_idx]
 
 print("\n" + "="*80)
-print("🏆 BEST MODEL")
+print(" BEST MODEL")
 print("="*80)
 print(f"Model:     {best_model['Model']}")
 print(f"Accuracy:  {best_model['Accuracy']:.4f}")
@@ -322,14 +322,15 @@ print(f"ROC-AUC:   {best_model['ROC-AUC']:.4f}")
 # COMPLETE
 # ============================================================================
 print("\n" + "="*80)
-print("✅ TRAINING COMPLETED SUCCESSFULLY!")
+print(" TRAINING COMPLETED SUCCESSFULLY!")
 print("="*80)
-print("\n📦 Saved Models:")
-print("  ✅ models/naive_bayes.pkl")
-print("  ✅ models/logistic_regression.pkl")
-print("  ✅ models/svm.pkl")
-print("  ✅ models/random_forest.pkl")
-print("  ✅ models/tfidf_vectorizer.pkl")
-print("\n📊 Visualizations: outputs/")
-print("\n🚀 Next step: streamlit run app.py")
+print("\n Saved Models:")
+print("   models/naive_bayes.pkl")
+print("   models/logistic_regression.pkl")
+print("   models/svm.pkl")
+print("   models/random_forest.pkl")
+print("   models/tfidf_vectorizer.pkl")
+print("\n Visualizations: outputs/")
+print("\n Next step: streamlit run app.py")
+
 print("="*80)
