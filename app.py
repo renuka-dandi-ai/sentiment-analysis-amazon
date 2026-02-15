@@ -60,15 +60,29 @@ st.markdown("""
 # LOAD MODELS AND ARTIFACTS
 # =============================================================================
 @st.cache_resource
-def load_models_and_artifacts():
-    """Load all trained ML models and preprocessing artifacts"""
-    
+def load_models():
     models = {}
     
-    # Check if models directory exists
-    if not os.path.exists('models'):
-        st.error("Models directory not found! Please train the models first by running train_ml_only.py")
-        return None
+    # Check if models exist, if not train them
+    if not os.path.exists('models') or not os.path.exists('models/logistic_regression.pkl'):
+        st.warning("⏳ First time setup - Training models...")
+        st.info("This will take 10-15 minutes. Please wait...")
+        
+        # Create models directory
+        os.makedirs('models', exist_ok=True)
+        
+        # Run training
+        import subprocess
+        result = subprocess.run(['python', 'train.py'], capture_output=True, text=True)
+        
+        if result.returncode == 0:
+            st.success("✅ Training complete!")
+            st.rerun()
+        else:
+            st.error("Training failed. Please check logs.")
+            return None
+    
+
     
     try:
         # Load ML models
