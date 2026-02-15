@@ -109,6 +109,24 @@ Viz: Matplotlib, Seaborn
 ---
 
 **Note:** The application is fully functional and tested locally. All features work as demonstrated in the screenshots above.
+---
+
+## 🎥 Live Demo Video
+
+Watch the complete application demonstration:
+
+[![Watch Demo Video](https://youtu.be/fd0NAetd4Ug)
+
+**Video Link:** https://youtu.be/N_3ZfJ7JnP0
+
+### What's Shown in the Video:
+- ✅ Dashboard interface
+- ✅ Positive review prediction with confidence scores
+- ✅ Negative review prediction with visualizations
+- ✅ Real-time sentiment analysis
+- ✅ Model comparison features
+
+---
 
  License:
 MIT License
