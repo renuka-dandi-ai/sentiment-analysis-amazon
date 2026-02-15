@@ -115,9 +115,9 @@ Viz: Matplotlib, Seaborn
 
 Watch the complete application demonstration:
 
-[![Watch Demo Video](https://youtu.be/fd0NAetd4Ug?si=Vjc9Om2Wv5zj1S-I)
+[![Watch Demo Video](https://youtu.be/6YyoLWIVwXA?si=BPV2flZsd1Pvm1CU)
 
-**Video Link:** https://youtu.be/N_3ZfJ7JnP0
+**Video Link:** https://youtu.be/6YyoLWIVwXA
 
 ### What's Shown in the Video:
 - ✅ Dashboard interface
