@@ -115,7 +115,7 @@ Viz: Matplotlib, Seaborn
 
 Watch the complete application demonstration:
 
-[![Watch Demo Video](https://youtu.be/fd0NAetd4Ug)
+[![Watch Demo Video](https://youtu.be/fd0NAetd4Ug?si=Vjc9Om2Wv5zj1S-I)
 
 **Video Link:** https://youtu.be/N_3ZfJ7JnP0
 
