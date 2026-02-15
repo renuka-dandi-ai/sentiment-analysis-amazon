@@ -93,6 +93,23 @@ Viz: Matplotlib, Seaborn
  Multilingual support
  Cloud deployment
 
+ ---
+
+## 📸 Dashboard Preview
+
+### Application Interface
+![Dashboard](images/dashboard.png)
+
+### Positive Review Analysis
+![Positive Result](images/positive-result.png)
+
+### Negative Review Analysis
+![Negative Result](images/negative-result.png)
+
+---
+
+**Note:** The application is fully functional and tested locally. All features work as demonstrated in the screenshots above.
+
  License:
 MIT License
 👤 Author
